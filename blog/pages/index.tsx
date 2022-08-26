@@ -14,22 +14,23 @@ type Props = {
   todos: any
 }
 
-export default function Index({ 
+export default function Index({
   allPosts,
- }: Props) {
+  //todos
+}: Props) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
 
   // ↓↓↓ client-side-rendering ↓↓↓
   const [todos, setTodos] = useState([]);
-  useEffect(() =>{
-    const fetchTodos = async() => {
+  useEffect(() => {
+    const fetchTodos = async () => {
       setTimeout(
         async () => {
-        const res = await fetch('/api/todos');
-        const data = await res.json();
-        console.log(data);
-        setTodos(data);  
+          const res = await fetch('/api/todos');
+          const data = await res.json();
+          console.log(data);
+          setTodos(data);
         }
         , 2000);
     }
@@ -84,9 +85,10 @@ export const getServerSideProps = async () => {
     'coverImage',
     'excerpt',
   ])
+  //const todos = 
 
   return {
-    props: { 
+    props: {
       allPosts,
     },
   }
